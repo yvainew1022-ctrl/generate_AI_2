@@ -33,4 +33,4 @@ Writing action items manually after meetings takes time and can be inconsistent.
 
 ## Video Walkthrough
 
-(link to be added)
+https://youtu.be/3NaJpUG5NjE
