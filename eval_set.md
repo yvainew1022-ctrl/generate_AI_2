@@ -1,6 +1,6 @@
 # Evaluation Set
 
-This evaluation set is designed to test the workflow of converting raw meeting notes into structured action items. It is intentionally small so results are easy to compare fairly across prompt revisions.
+This evaluation set is designed to evaluate the workflow of converting raw meeting notes into structured action items. The goal is not to build a large benchmark, but to create a small, stable, and reusable set of test cases for fair comparison across prompt revisions.
 
 ---
 
@@ -21,9 +21,9 @@ Everyone should review the budget proposal before next meeting.
 **What a good output should do**
 
 * Extract all clear action items
-* Identify Sarah, Tom, and Lisa correctly
+* Correctly identify Sarah, Tom, and Lisa as owners
 * Preserve deadlines when mentioned
-* Include the group review item even though the owner is collective
+* Include the team review item even though the owner is a group rather than one individual
 
 ---
 
@@ -40,6 +40,7 @@ Quick sync. John to call client. No deadline set.
 * Extract one clear action item
 * Identify John as the owner
 * Mark the deadline as not specified
+* Keep the output concise
 
 ---
 
@@ -56,14 +57,14 @@ Website changes also discussed.
 
 **What a good output should do**
 
-* Extract only clearly actionable items
-* Avoid inventing owners
-* Mark missing owners and deadlines clearly
-* Avoid turning vague discussion into overly confident tasks
+* Extract only the items that are clearly actionable
+* Avoid inventing names or deadlines
+* Mark the owner as not specified when missing
+* Treat vague discussion carefully instead of turning every sentence into a confident action item
 
 ---
 
-## Case 4: Likely to fail - mixed languages
+## Case 4: Likely to fail or require human review - mixed languages
 
 **Input**
 
@@ -76,13 +77,14 @@ Also discussed: 预算还没有确认，需要跟进。
 **What a good output should do**
 
 * Correctly extract the report submission task
-* Capture the budget follow-up as an action item if possible
-* Avoid hallucinating extra details
-* Handle the mixed Chinese-English input appropriately
+* Capture the budget follow-up as a possible action item if supported by the text
+* Handle the mixed Chinese-English notes as accurately as possible
+* Avoid hallucinating extra details not stated in the notes
+* Preserve uncertainty if the owner of the budget follow-up is not clear
 
 ---
 
-## Case 5: Edge case - very long and messy notes
+## Case 5: Edge case - long and messy notes
 
 **Input**
 
@@ -100,11 +102,11 @@ Meeting ended around 3:30pm.
 
 **What a good output should do**
 
-* Ignore irrelevant meeting chatter
-* Extract clear action items only
+* Ignore irrelevant meeting chatter and background details
+* Extract the real follow-up tasks only
 * Preserve uncertainty where ownership is unclear
-* Avoid turning every discussion point into a task
-* Reflect approximate deadlines carefully without inventing precision
+* Avoid inventing precise deadlines from vague phrases
+* Separate business follow-up items from lower-priority or social planning items when appropriate
 
 ---
 
@@ -112,9 +114,8 @@ Meeting ended around 3:30pm.
 
 This evaluation set includes:
 
-* 1 normal case
+* one normal case
 * multiple edge cases
-* 1 case likely to require human review
+* one case likely to require human review
 
-The purpose is to evaluate whether prompt revisions improve consistency, reduce hallucination, and better handle ambiguity.
-
+It is designed to test whether the system can reliably extract action items, avoid hallucination, and handle ambiguity in a realistic business workflow.
