@@ -1,141 +1,36 @@
-# Meeting Notes → Action Items Generator
+# Meeting Notes to Action Items
 
-## 📌 Overview
+## Business Workflow
 
-This project is an AI-powered tool that converts raw meeting notes into structured and actionable tasks.
+This project focuses on a business workflow: converting raw meeting notes into structured action items.
 
-It automatically identifies:
+## User
 
-* What needs to be done
-* Who is responsible (if mentioned)
-* Deadlines (if mentioned)
+The main users are project managers, team leads, and anyone who needs to summarize meetings and follow up on tasks.
 
-The goal is to improve efficiency, consistency, and clarity in post-meeting follow-ups.
+## Input
 
----
+The system receives raw meeting notes in text format. These notes may be short, detailed, incomplete, messy, or even partially multilingual.
 
-## 👤 Target Users
+## Output
 
-* Project Managers
-* Team Leads
-* Consultants
-* Anyone who regularly runs or attends meetings
+The system produces a structured list of action items, including:
 
----
+* what needs to be done
+* who is responsible, if mentioned
+* the deadline, if mentioned
 
-## ⚙️ How It Works
+## Why This Task Is Valuable
 
-1. The user inputs raw meeting notes (unstructured text)
-2. The AI model processes the text
-3. The system extracts and formats action items
-4. Results are saved into a structured output file (`output.txt`)
+Writing action items manually after meetings takes time and can be inconsistent. Important follow-ups may be missed, and ownership may remain unclear. Automating a first draft of action items can save time, improve consistency, and make follow-up easier.
 
----
+## Project Files
 
-## 📥 Input
-
-* Raw meeting notes (plain text)
-
----
-
-## 📤 Output
-
-* A numbered list of action items, including:
-
-  * Task description
-  * Owner (if available)
-  * Deadline (if available)
-
----
-
-## 🤖 Model & Technology
-
-This project runs **locally using Ollama**, which means:
-
-* No API cost
-* No external data sharing
-* Fully offline capability
-
-Models used:
-
-* `llama3` (default)
-* `mistral` (optional alternative)
-
----
-
-## 🚀 How to Run
-
-### 1. Install Ollama
-
-Download and install from: https://ollama.com
-
-### 2. Pull a model
-
-```bash
-ollama pull llama3
-```
-
-### 3. Install dependencies
-
-```bash
-pip install requests
-```
-
-### 4. Run the app
-
-```bash
-python app.py
-```
-
----
-
-## 📄 Example Use Case
-
-Input:
-
-```
-Tom needs to fix the login bug by Friday.
-Lisa will design the homepage mockups by April 15.
-```
-
-Output:
-
-```
-1. Fix login bug — Owner: Tom — Deadline: Friday
-2. Design homepage mockups — Owner: Lisa — Deadline: April 15
-```
-
----
+* `app.py`: runs the prototype
+* `prompts.md`: shows prompt iterations
+* `eval_set.md`: contains the evaluation cases
+* `report.md`: explains the final design and recommendation
 
 ## Video Walkthrough
-[Watch the video walkthrough here](你的YouTube或Vimeo链接)
 
----
-
-## 💡 Why This Matters
-
-Manually writing action items after meetings is:
-
-* Time-consuming
-* Error-prone
-* Inconsistent
-
-This tool ensures:
-
-* No key tasks are missed
-* Clear accountability
-* Faster follow-ups
-
----
-
-## 🧠 Reflection (for assignment)
-
-* One thing I noticed: AI performs well on structured notes but struggles with ambiguous ownership
-* One thing I liked: The automation significantly reduces manual effort
-* One challenge: Handling messy or multilingual meeting notes
-
----
-
-## 🔗 Repository
-
-(Add your GitHub repo link here)
+(link to be added)
