@@ -2,27 +2,26 @@
 
 ## Business Use Case
 
-This project focuses on a common business workflow: converting raw meeting notes into structured action items. In many teams, managers or meeting organizers have to manually review notes after each meeting and summarize who needs to do what by when. This process is repetitive, time-consuming, and often inconsistent. Important tasks can be missed, ownership may remain unclear, and follow-up quality depends on the person writing the summary. Automating a first draft of action items can save time and improve consistency, especially for project managers, team leads, and cross-functional teams.
+This project focuses on a common business workflow: converting raw meeting notes into structured action items. In many organizations, meeting participants or managers must manually summarize notes after meetings and identify follow-up tasks. This process is time-consuming and often inconsistent. Important tasks may be missed, and ownership or deadlines may not be clearly captured. Automating this workflow can improve efficiency, consistency, and clarity in team communication.
 
 ## Model Choice and Rationale
 
-I chose to use a local large language model through Ollama. The default model used in the prototype is `llama3`, with `mistral` available as an alternative. I chose this setup because it is easy to run locally, avoids API cost, and makes the prototype reproducible without relying on paid external services. In informal testing, the model handled straightforward meeting notes well and produced usable structured outputs. However, performance became less reliable when the notes were messy, multilingual, or incomplete.
+This prototype uses a local large language model through Ollama, specifically the `llama3` model. The main reason for this choice is that it allows the system to run locally without requiring paid API access. This makes the project reproducible and easy to run for graders. The model performs well on structured text tasks such as extracting action items, although its performance varies depending on input quality.
 
-## Baseline vs. Final Design
+## Baseline vs Final Design
 
-The baseline system used a simple prompt asking the model to extract action items, owners, and deadlines. This worked reasonably well for clean notes, but the model sometimes guessed information when ownership or deadlines were unclear. It also tended to treat some discussion points as action items even when no next step was explicitly stated.
+The baseline system used a simple prompt asking the model to extract action items, owners, and deadlines. While it worked for clean and structured notes, it often produced inconsistent results when the input was ambiguous. In some cases, the model inferred missing information or treated discussion points as action items.
 
-After the first revision, I added rules telling the model not to invent missing details and to label unclear owners or deadlines as “Not specified.” This improved consistency and reduced hallucination. After the second revision, I added stricter formatting rules, clearer instructions to exclude non-actionable discussion, and support for mixed-language notes. The final design produced cleaner, more structured outputs and handled ambiguity more honestly.
+After the first prompt revision, explicit rules were added to prevent the model from inventing missing details and to label unknown owners or deadlines as "Not specified." This significantly improved consistency and reduced hallucination.
 
-Overall, prompt iteration improved the reliability of the system more than the raw fluency of the output. The biggest improvement was not that the model became smarter, but that it became more disciplined.
+In the second revision, the prompt was further refined by improving formatting, clarifying what qualifies as an actionable task, and adding instructions for handling mixed-language inputs and ambiguity. The final design produced more structured, reliable, and professional outputs, especially on edge cases.
 
-## Where the Prototype Still Fails
+## Limitations and Failure Cases
 
-The prototype still struggles in several situations. First, if ownership is only implied rather than directly stated, the model may still produce an uncertain or incomplete output. Second, very messy notes may contain half-formed ideas that are difficult to distinguish from real commitments. Third, multilingual inputs can be partially understood, but nuanced details may still be missed. Finally, vague deadlines such as “soon” or “next week maybe” require judgment that the model cannot always resolve correctly.
+Despite improvements, the system still has limitations. It struggles when ownership is implied but not explicitly stated. In messy or informal meeting notes, it can be difficult for the model to distinguish between actual commitments and general discussion. Mixed-language inputs are handled reasonably well, but subtle meaning can still be lost. Additionally, vague deadlines such as "soon" or "next week maybe" require human judgment that the model cannot reliably interpret.
 
-Because of these issues, the system still requires human review before action items are shared or relied on in real business settings.
+Because of these limitations, the system cannot be fully trusted to produce final action items without review.
 
 ## Deployment Recommendation
 
-I would recommend deploying this workflow only as a first-draft assistant, not as a fully autonomous system. It is valuable for saving time and giving users a structured starting point, but it should not be trusted to make final decisions about ownership or deadlines without review. The safest deployment condition would be a human-in-the-loop workflow where a manager or meeting organizer checks and edits the generated action items before distribution. Under those conditions, the prototype could provide real value while keeping the risk of errors manageable.
-
+I would recommend deploying this system as a decision-support tool rather than a fully automated solution. It is useful for generating a first draft of action items and saving time, but a human should review and edit the output before it is shared or used for decision-making. Under a human-in-the-loop setup, this tool can provide real value while minimizing the risk of errors.
