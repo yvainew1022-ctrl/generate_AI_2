@@ -2,7 +2,7 @@
 
 ## Initial Version
 
-```text
+```text id="0lwmzm"
 You are a professional meeting assistant. 
 Your job is to read raw meeting notes and extract clear, structured action items.
 
@@ -16,17 +16,17 @@ Format your output as a numbered list. Be concise and professional.
 
 ### What changed and why
 
-This was the baseline prompt. It gave the model a clear role and basic output format, but it did not explain how to handle unclear ownership, missing deadlines, or ambiguous notes.
+This was the initial baseline prompt. It clearly defined the role of the model and the basic output structure, but it did not explain how to handle ambiguity, missing information, or vague notes.
 
 ### What improved, stayed the same, or got worse
 
-It worked well on simple and clean meeting notes. However, for messy or incomplete notes, the output could become inconsistent or too vague.
+It worked reasonably well on clean meeting notes with obvious owners and deadlines. However, on messy or incomplete notes, the model sometimes guessed missing details or produced inconsistent output formatting.
 
 ---
 
 ## Revision 1
 
-```text
+```text id="nf6twq"
 You are a professional meeting assistant.
 Your task is to read raw meeting notes and extract only clear action items.
 
@@ -45,17 +45,17 @@ Rules:
 
 ### What changed and why
 
-I added explicit rules for missing information and instructed the model not to invent details. This was meant to reduce hallucination and make outputs more consistent across edge cases.
+In this revision, I added explicit rules for handling missing owners and deadlines. I also told the model not to invent details. The purpose was to reduce hallucination and make the output more consistent across edge cases.
 
 ### What improved, stayed the same, or got worse
 
-This revision improved reliability, especially when owners or deadlines were missing. The model became less likely to guess. However, some outputs became a little more rigid and less natural.
+This revision improved reliability, especially for cases with unclear owners or missing due dates. The model became more disciplined and less likely to over-interpret the notes. On the other hand, some outputs became slightly more rigid and less natural.
 
 ---
 
 ## Revision 2
 
-```text
+```text id="mazz0t"
 You are a professional meeting assistant.
 Your task is to convert raw meeting notes into structured action items for business follow-up.
 
@@ -77,8 +77,8 @@ Rules:
 
 ### What changed and why
 
-I added stronger formatting, clarified that discussion points should not automatically become action items, and added instructions for mixed-language notes and ambiguity.
+In the second revision, I improved the formatting, clarified the difference between discussion points and true follow-up tasks, and added instructions for mixed-language notes and ambiguous cases. This was meant to improve output quality on the most difficult examples in the evaluation set.
 
 ### What improved, stayed the same, or got worse
 
-This version produced the most consistent and professional results. It handled multilingual and unclear notes better than the earlier versions. It still struggled when the notes were very messy or when ownership was only implied rather than stated.
+This version produced the most consistent and professional output overall. It handled multilingual and ambiguous notes better than the earlier versions and reduced the chance of turning general discussion into false action items. It still struggled when the notes were extremely messy or when ownership was only implied rather than explicitly stated.
